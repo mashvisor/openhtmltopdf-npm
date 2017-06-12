@@ -1,5 +1,6 @@
 package com.mashvisor.app;
 import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
+import com.openhtmltopdf.svgsupport.BatikSVGDrawer;
 import java.io.*;
 import java.util.UUID;
 import java.io.BufferedReader;
@@ -75,6 +76,7 @@ public class App
             os = new FileOutputStream(outputFilePath);
             PdfRendererBuilder builder = new PdfRendererBuilder();
             builder.withHtmlContent(inputHtmlData, outputFilePath);
+            builder.useSVGDrawer(new BatikSVGDrawer());
             builder.toStream(os);
             try{
                 builder.run();
